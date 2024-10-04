@@ -25,7 +25,7 @@ FROM Posts
 WHERE CreationDate BETWEEN '2024-09-01' AND '2024-09-30' 
 AND ParentId IS NULL;
 ```
-### Returns the average score per question, average view count per question, and average length of the the question posted from the first to the last of the month
+### Returns the average score per question, average view count per question, and average length of the question posted from the first to the last of the month
 ```
 SELECT 
     AVG(ViewCount) AS AvgViewCountPerPost, 
@@ -52,7 +52,7 @@ SELECT TOP 20
 FROM TagCount
 ORDER BY TagUsageCount DESC;
 ```
-### Return the number of account created from the first to the last of the month
+### Return the number of accounts created from the first to the last of the month
 ```
 SELECT COUNT(Id) AS AccountsCreated
 FROM Users
