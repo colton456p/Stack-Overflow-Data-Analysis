@@ -58,3 +58,11 @@ SELECT COUNT(Id) AS AccountsCreated
 FROM Users
 WHERE CreationDate BETWEEN '2024-01-01' AND '2024-01-31'
 ```
+### Return the number of active users from the first to the last of the month
+- Note: An active user is consider to be an individual who has accessed their account at some point in the selected month.
+```
+SELECT 
+    COUNT(Id) AS ActiveUsers
+FROM Users
+WHERE LastAccessDate BETWEEN '2024-01-01' AND '2024-01-31';
+```
