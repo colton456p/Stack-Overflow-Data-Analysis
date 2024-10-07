@@ -1,7 +1,7 @@
 # Stack Exchange Data Explorer SQL Queries:
 
 ### Return the number of total posts from the first to the last of the month
-- A post is considered anything posted on Stack Overflow this can be a question, answer, or comment.
+- Note: A post is considered anything posted on Stack Overflow this can be a question, answer, or comment.
 ```
 SELECT COUNT(Id)
 FROM Posts
