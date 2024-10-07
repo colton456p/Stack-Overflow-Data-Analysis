@@ -4,8 +4,9 @@
 
 ## Data research plan:
 #### Number of posts:
-- [X] Average Number of posts done
+- [X] Average number of posts done
 - [X] Average number of posts done per day
+- [X] Average length of body of post
 #### Number of questions asked:
 - [X] Number of questions posted
 #### New user recruitment:
@@ -13,9 +14,12 @@
 #### Number of reply's:
 - [X] Average number of reply's per post
 - [X] The average of the number of posts done per day
-#### Post engagement:
+- [ ] Average lenght of reply
+#### Post and User engagement:
 - [X] Average score per post
-- [ ] Average number of votes per top comment
+- [ ] Number of active users
+- [X] Average number of active users per day
+- [X] Average number of votes per top comment
 #### User contentment:
 - [ ] Average ratio of up votes to down votes per active user
 #### Quality of responses:
