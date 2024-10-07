@@ -66,3 +66,11 @@ SELECT
 FROM Users
 WHERE LastAccessDate BETWEEN '2024-01-01' AND '2024-01-31';
 ```
+### Return the average length of a replies body from the first to the last of the month
+```
+SELECT 
+    AVG(LEN(Body)) AS AvgBodyLength
+FROM Posts
+WHERE ParentId IS NOT NULL
+AND CreationDate BETWEEN '2024-01-01' AND '2024-01-31';
+```
