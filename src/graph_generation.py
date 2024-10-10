@@ -6,32 +6,6 @@ import pandas as pd
 import seaborn as sns
 
 
-def create_graphs(
-    download_data: bool = False,
-    format: str = "png",
-    csv_file: str = None,
-    post_LLM: bool = None,
-):
-    avg_posts_ph(
-        download_data=download_data,
-        format=format,
-        csv_file=csv_file,
-        post_LLM=post_LLM,
-    )
-    monthly_data(
-        download_data=download_data,
-        format=format,
-        csv_file=csv_file,
-        post_LLM=post_LLM,
-    )
-    popular_tags(
-        download_data=download_data,
-        format=format,
-        csv_file=csv_file,
-        post_LLM=post_LLM,
-    )
-
-
 def avg_posts_ph(
     download_data: bool = False,
     format: str = "png",
@@ -102,7 +76,12 @@ def avg_posts_ph(
         plt.show()
 
 
-def monthly_data():
+def monthly_data(
+    download_data: bool = False,
+    format: str = "png",
+    csv_file: str = None,
+    post_LLM: bool = None,
+):
     """
     The file processes the following data: Num posts per period, Avg num of posts per day,
     Avg num of replies per posts, Num of new questions posted per period, Post replies,
@@ -113,7 +92,12 @@ def monthly_data():
     """
 
 
-def popular_tags():
+def popular_tags(
+    download_data: bool = False,
+    format: str = "png",
+    csv_file: str = None,
+    post_LLM: bool = None,
+):
     """
     The file processed contains the 20 most popular tags and the number of
     posts associated with each tag. Any blank data row represents a tag
