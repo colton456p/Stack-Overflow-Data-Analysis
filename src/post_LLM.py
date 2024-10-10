@@ -14,12 +14,12 @@ def data_processing():
     )
     monthly_data(
         download_data=True,
-        csv_file="post-monthly-data.csv",
+        csv_file="post-llm-monthly-data.csv",
         post_LLM=True,
     )
     popular_tags(
         download_data=True,
-        csv_file="post-popular-tags.csv",
+        csv_file="post-llm-popular-tags.csv",
         post_LLM=True,
     )
 

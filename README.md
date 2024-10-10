@@ -7,7 +7,7 @@
 - [X] Average number of posts
 - [X] Average number of posts per day
 - [X] Average length of body of post
-- [ ] Average number of posts per hour of the day
+- [X] Average number of posts per hour of the day
 #### Questions:
 - [X] Number of questions posted
 - [X] Average score per question

@@ -14,12 +14,12 @@ def main():
     )
     monthly_data(
         download_data=True,
-        csv_file="pre-monthly-data.csv",
+        csv_file="pre-llm-monthly-data.csv",
         post_LLM=False,
     )
     popular_tags(
         download_data=True,
-        csv_file="pre-popular-tags.csv",
+        csv_file="pre-llm-popular-tags.csv",
         post_LLM=False,
     )
 
