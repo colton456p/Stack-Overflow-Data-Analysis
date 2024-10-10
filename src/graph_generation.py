@@ -5,6 +5,32 @@ import numpy as np
 import pandas as pd
 
 
+def create_graphs(
+    download_data: bool = False,
+    format: str = "png",
+    csv_file: str = None,
+    post_LLM: bool = None,
+):
+    avg_posts_ph(
+        download_data=download_data,
+        format=format,
+        csv_file=csv_file,
+        post_LLM=post_LLM,
+    )
+    monthly_data(
+        download_data=download_data,
+        format=format,
+        csv_file=csv_file,
+        post_LLM=post_LLM,
+    )
+    popular_tags(
+        download_data=download_data,
+        format=format,
+        csv_file=csv_file,
+        post_LLM=post_LLM,
+    )
+
+
 def avg_posts_ph(
     download_data: bool = False,
     format: str = "png",
