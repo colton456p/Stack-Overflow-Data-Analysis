@@ -30,9 +30,9 @@
 - [X] Count the number of tags accosiated to each topic.
 
 ## Important study information to consider:
-- A **Post** is consider to be anything "posted" to Stack overflow. This includes questions, answers, comments, and forum discussions.
+- A **Post** is consider to be anything "posted" to Stack Overflow. This includes questions, answers, comments, and forum discussions.
 - A **Question** is consider to be a **Post** that has no parentId. Therefor is it a question being asked which marks the beginning of a dicussion. It is not in reply to another **Post**
-- A **Answer** is consider to be a **Post** that has a valid parentId. Therefor when a user engages in a discussion they are considered to be replying to a **Post** of type **Question**.
+- An **Answer** is consider to be a **Post** that has a valid parentId. Therefor when a user engages in a discussion they are considered to be replying to a **Post** of type **Question**.
 
 # Installation guide:
 1. Install python 3.9
