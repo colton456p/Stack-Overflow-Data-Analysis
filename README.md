@@ -28,3 +28,23 @@
 #### Popularity of topics discussed
 - [X] Determine which topics/coding languages are most searched/tagged in posts.
 - [X] Count the number of tags accosiated to each topic.
+
+
+# Installation guide:
+1. Create virtual environment:
+    ```bash
+    python3 -m venv venv
+    ```
+2. Install Pandas, Numpy, and Matplotlib
+    ```bash
+    pip install pandas numpy matplotlib
+    ```
+3. Run the Pre vs Post LLM graph generation seperately
+    - Pre LLM:
+        ```bash
+        python3 -m src.pre_llm_graph_generation
+        ```
+    - Post LLM:
+        ```bash
+        python3 -m src.post_llm_graph_generation
+        ```
