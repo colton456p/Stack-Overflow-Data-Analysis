@@ -1,6 +1,7 @@
 # Research Study: Stack Overflow Usage Pre vs Post LLM
 - **Pre LLM time period:** December 1st 2018 - September 30th 2020
 - **Post LLM time period:** December 1st 2022 - September 30th 2024
+- [SQL queries](./SQL_queries.md)
 
 ## Data research plan:
 #### Posts:
