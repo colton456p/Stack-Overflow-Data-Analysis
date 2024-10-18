@@ -7,20 +7,16 @@ def data_processing():
     monthly Stack Overflow data from the first to the last of the month
     starting from December 1st 2022 to September 30th 2024
     """
-    avg_posts_ph(
+    popular_tags_comparison(
+        pre_llm_csv_file="pre-llm-popular-tags.csv",
+        post_llm_csv_file="post-llm-popular-tags.csv",
         download_data=True,
-        csv_file="post-llm-avg-posts-per-hour.csv",
-        post_LLM=True,
     )
-    monthly_data(
+
+    avg_posts_ph_comparison(
+        pre_llm_csv_file="pre-llm-avg-posts-per-hour.csv",
+        post_llm_csv_file="post-llm-avg-posts-per-hour.csv",
         download_data=True,
-        csv_file="post-llm-monthly-data.csv",
-        post_LLM=True,
-    )
-    popular_tags(
-        download_data=True,
-        csv_file="post-llm-popular-tags.csv",
-        post_LLM=True,
     )
 
 
