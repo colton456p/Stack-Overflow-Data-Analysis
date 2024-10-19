@@ -54,6 +54,14 @@
         ```bash
         python3 -m src.post_LLM
         ```
+    - Comparison Graphs:
+        ```bash
+        python3 -m src.comparison_LLM
+        ```
+5. (optional) Run all graph generation simultaniously.
+    ```bash
+    python3 -m src.run_all
+    ```
 
 ### Linter 
 - To run project lint:

@@ -182,7 +182,9 @@ def popular_tags(
 
     data_long = df.melt(id_vars=["Tag"], var_name="Month", value_name="Count")
     data_long["Month"] = pd.to_datetime(data_long["Month"], format="%b-%y")
-    data_long["Count"].fillna(0, inplace=True)
+    # data_long["Count"].fillna(0, inplace=True)
+    data_long["Count"] = data_long["Count"].fillna(0)
+
 
     def popularity_heatmap(figure_file_name="tag_popularity_heatmap"):
         """
@@ -190,10 +192,10 @@ def popular_tags(
         Darker colors represent higher usage counts, while lighter colors indicate less frequent use
         or absence from the top 20 in a particular month.
         """
-        plt.style.use("seaborn-darkgrid")
+        plt.style.use("ggplot")
 
         plt.figure(figsize=(12, 8))
-        pivot_data = df.pivot_table(index="Tag", values=df.columns[1:], aggfunc=np.sum)
+        pivot_data = df.pivot_table(index="Tag", values=df.columns[1:], aggfunc="sum")
         sns.heatmap(pivot_data, cmap="YlGnBu", linewidths=0.5, annot=False)
         plt.title("Tag Popularity Heatmap (Top 20 Tags Over Time)", fontsize=16)
         plt.xlabel("Month")

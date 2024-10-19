@@ -1,7 +1,7 @@
 from src.graph_generation import *
 
 
-def main():
+def data_processing():
     """
     Calls to functions that read in CSV data from files which contain
     monthly Stack Overflow data from the first to the last of the month
@@ -25,4 +25,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    data_processing()
