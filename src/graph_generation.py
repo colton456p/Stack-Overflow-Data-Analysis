@@ -185,7 +185,6 @@ def popular_tags(
     # data_long["Count"].fillna(0, inplace=True)
     data_long["Count"] = data_long["Count"].fillna(0)
 
-
     def popularity_heatmap(figure_file_name="tag_popularity_heatmap"):
         """
         The popularity heatmap visualizes the popularity of the top 20 Stack Overflow tags across the months.
