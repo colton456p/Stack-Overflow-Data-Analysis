@@ -43,7 +43,7 @@ def avg_posts_ph(
     hours_of_day = df.columns
     posts_per_hour = df.sum()
 
-    def barplot(figure_file_name="total_posts_per_hour_bar_graph"):  # working
+    def barplot(figure_file_name="total_posts_per_hour_bar_graph"):
         """Total posts per hour as Bar Graph"""
         plt.figure(figsize=(10, 6))
         plt.bar(hours_of_day, posts_per_hour)
@@ -59,7 +59,7 @@ def avg_posts_ph(
             post_LLM=post_LLM,
         )
 
-    def line_graph(figure_file_name="avg_posts_per_hour_line_graph"):  # working
+    def line_graph(figure_file_name="avg_posts_per_hour_line_graph"):
         """Generates a line graph comparing posts per hour for different time periods."""
         mid_point = len(df) // 2
         df_part1, df_part2 = df.iloc[:mid_point], df.iloc[mid_point:]
@@ -117,7 +117,7 @@ def avg_posts_ph_comparison(
             f"One or both of the CSV files ('{pre_llm_csv_file}', '{post_llm_csv_file}') were not found."
         ) from e
 
-    def lineplot(figure_file_name="avg_posts_ph_line_plot"):  # working
+    def lineplot(figure_file_name="avg_posts_ph_line_plot"):
         """Generates a line plot comparing pre-LLM and post-LLM periods."""
         pre_llm_avg = convert_hours_in_df(
             pre_llm_df.drop(columns=["Start Date", "End Date"])
@@ -187,7 +187,7 @@ def popular_tags(
 
     def usage_trends_line_graph(
         figure_file_name="tag_usage_trends_line_graph",
-    ):  # complete
+    ):
         """Generates a line graph with 2 subplots where each line represents the count of posts for a particular tag."""
         unique_tags = data_long["Tag"].unique()
         mid_point = len(unique_tags) // 2
@@ -268,7 +268,7 @@ def popular_tags_comparison(
 
     combined_df = pd.merge(pre_llm_df, post_llm_df, on="Tag", how="outer")
 
-    def barplot(figure_file_name: str = "tag_usage_bar_graph"):  # complete
+    def barplot(figure_file_name: str = "tag_usage_bar_graph"):
         """Generates a barplot of the total usage of each tag pre-LLM and post-LLM."""
         combined_df["Total_preLLM"] = combined_df.filter(like="_preLLM").sum(axis=1)
         combined_df["Total_postLLM"] = combined_df.filter(like="_postLLM").sum(axis=1)
@@ -297,7 +297,8 @@ def popular_tags_comparison(
     def scatter_plot(
         descriptive: bool = True, figure_file_name: str = "tag_popularity_scatter_plot"
     ):
-        """Generates a scatter plot on tag popularity pre-LLM and post-LLM. Tags are given a popularity rank based on their total usage count."""
+        """Generates a scatter plot on tag popularity pre-LLM and post-LLM. Tags are given a popularity rank based on their total usage count.
+        The higher the score the less popular the tag is."""
 
         pre_llm_df["Total_preLLM"] = pre_llm_df.filter(like="_preLLM").sum(axis=1)
         post_llm_df["Total_postLLM"] = post_llm_df.filter(like="_postLLM").sum(axis=1)
@@ -337,16 +338,18 @@ def popular_tags_comparison(
         )  # This diagonal line is just for reference
 
         plt.tight_layout()
-        if download_data:
-            save_comparison_graph(figure_file_name=figure_file_name, format=format)
-        else:
-            plt.show()
-        reset_graph_settings()
+        create_comparison_graph(
+            download_data=download_data,
+            figure_file_name=figure_file_name,
+            format=format,
+        )
 
     def dual_scatter_plot(
-        descriptive: bool = True, figure_file_name: str = "tag_popularity_scatter_plot"
+        descriptive: bool = True,
+        figure_file_name: str = "tag_popularity_scatter_subplot",
     ):
-        """Generates a scatter plot split into two subplots on tag popularity pre-LLM and post-LLM. Tags are given a popularity rank based on their total usage count"""
+        """Generates a scatter plot split into two subplots on tag popularity pre-LLM and post-LLM. Tags are given a popularity rank based on their total usage count
+        The higher the score the less popular the tag is."""
         pre_llm_df["Total_preLLM"] = pre_llm_df.filter(like="_preLLM").sum(axis=1)
         post_llm_df["Total_postLLM"] = post_llm_df.filter(like="_postLLM").sum(axis=1)
 
@@ -758,7 +761,9 @@ def monthly_data_comparison(
             format=format,
         )
 
-    def body_length_question_line_graph(figure_file_name="length_of_body_line_graph"):
+    def body_length_question_line_graph(
+        figure_file_name="length_of_body_question_line_graph",
+    ):
         """Generates a line graph comparing avg length of body per question pre LLM vs post LLM"""
         plt.figure(figsize=(10, 6))
         plt.plot(
