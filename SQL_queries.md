@@ -74,3 +74,13 @@ FROM Posts
 WHERE ParentId IS NOT NULL
 AND CreationDate BETWEEN '2024-01-01' AND '2024-01-31';
 ```
+### Return the average highest score for an answer to a Question with atleast 500 views from the first to the last of the month
+```
+SELECT 
+    AVG(p.Score) AS AvgHighestScorePerPost
+FROM Posts p
+JOIN Posts parentPost ON p.ParentId = parentPost.Id
+WHERE p.CreationDate BETWEEN '2018-12-01' AND '2018-12-31'
+AND parentPost.ParentId IS NULL
+AND parentPost.ViewCount > 500;
+```
