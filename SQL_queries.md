@@ -20,12 +20,20 @@ ORDER BY HourOfDay;
 ### Return the number of questions posted from the first to the last of the month
 ```
 SELECT 
-    COUNT(Id) AS NumberOfQuestions, 
+    COUNT(Id) AS NumberOfQuestions 
 FROM Posts
 WHERE CreationDate BETWEEN '2024-09-01' AND '2024-09-30' 
 AND ParentId IS NULL;
 ```
-### Returns the average score per question, average view count per question, and average length of the question posted from the first to the last of the month
+### Return the numner of answers/replies posted from the first to the last of the month
+```
+SELECT 
+    COUNT(Id) AS NumberOfQuestions 
+FROM Posts
+WHERE CreationDate BETWEEN '2024-09-01' AND '2024-09-30' 
+AND ParentId IS NOT NULL;
+```
+### Returns the average score per question, average view count per question, and average length of body per question posted from the first to the last of the month
 ```
 SELECT 
     AVG(ViewCount) AS AvgViewCountPerPost, 
@@ -34,6 +42,16 @@ SELECT
 FROM Posts
 WHERE CreationDate BETWEEN '2024-09-01' AND '2024-09-30’ 
 AND ParentId IS NULL;
+```
+### Returns the average score per answer, average view count per answer, and average length of body per answer posted from the first to the last of the month
+```
+SELECT 
+    AVG(ViewCount) AS AvgViewCountPerPost, 
+    AVG(Score) AS AvgScorePerPost, 
+    AVG(LEN(Body)) AS AvgLengthOfBodyPerPost
+FROM Posts
+WHERE CreationDate BETWEEN '2024-09-01' AND '2024-09-30’ 
+AND ParentId IS NOT NULL;
 ```
 ### Return the top 20 tags and their usage counts
 ```
@@ -66,7 +84,7 @@ SELECT
 FROM Users
 WHERE LastAccessDate BETWEEN '2024-01-01' AND '2024-01-31';
 ```
-### Return the average length of a replies body from the first to the last of the month
+### Return the average length of body for a answer from the first to the last of the month
 ```
 SELECT 
     AVG(LEN(Body)) AS AvgBodyLength
@@ -83,4 +101,44 @@ JOIN Posts parentPost ON p.ParentId = parentPost.Id
 WHERE p.CreationDate BETWEEN '2018-12-01' AND '2018-12-31'
 AND parentPost.ParentId IS NULL
 AND parentPost.ViewCount > 500;
+```
+### Return which tagId represents 'python'
+```
+SELECT T.Id, T.TagName
+FROM Tags AS T
+WHERE LOWER(T.TagName) = 'python';
+```
+### Return which tagId represents 'JavaScript'
+```
+SELECT T.Id, T.TagName
+FROM Tags AS T
+WHERE LOWER(T.TagName) = 'javascript';
+```
+### Return which tagId represents 'Java'
+```
+SELECT T.Id, T.TagName
+FROM Tags AS T
+WHERE LOWER(T.TagName) = 'java';
+```
+### Return the postId type, score, and body of the accepted answer to the top liked posted question created between a given period that have the tags 'python', 'java', or 'javascipt'
+```
+SELECT 
+    PParent.Body AS QuestionBody,
+    PAccepted.Score AS AnswerScore,
+    PAccepted.Body AS AnswerBody,
+    STRING_AGG(T.TagName, ', ') AS QuestionTags  -- Concatenates all tag names with a comma separator
+FROM Posts AS PParent
+JOIN Posts AS PAccepted ON PParent.AcceptedAnswerId = PAccepted.Id
+JOIN PostTags AS PT ON PParent.Id = PT.PostId
+JOIN Tags AS T ON PT.TagId = T.Id
+WHERE PParent.Id IN (
+    SELECT TOP 5 P.Id
+    FROM Posts AS P
+    JOIN PostTags AS PT ON P.Id = PT.PostId
+    WHERE (PT.TagId = 16 OR PT.TagId = 3 OR PT.TagId = 17)  -- Using the tagID for 'python', 'java', 'javascript'
+      AND P.CreationDate BETWEEN '2018-12-01' AND '2018-12-31'
+      AND P.PostTypeId = 1
+    ORDER BY P.Score DESC
+)
+GROUP BY PParent.Body, PAccepted.Score, PAccepted.Body;
 ```

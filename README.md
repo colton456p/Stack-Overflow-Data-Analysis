@@ -24,7 +24,7 @@
 - [X] Number of active users
 - [X] Average number of dailey users
 #### Quality of responses:
-- [ ] Record the quality of responses using an error checking software such as FindBug
+- [ ] Record the quality of responses using an error checking software such as FindBug (across python, JavaScript, and Java)
 - [ ] Record whether or not the quality/length/description in answers on Stack Overflow have improved or disimproved.
 #### Popularity of topics discussed
 - [X] Determine which topics/coding languages are most searched/tagged in posts.
