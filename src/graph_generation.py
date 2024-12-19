@@ -858,3 +858,95 @@ def monthly_data_comparison(
     body_length_question_line_graph()
     post_per_period_line_graph()
     view_count_scatter_plot()
+    
+    
+def code_comparison(
+    download_data: bool = False,
+    format: str = "png",
+    csv_file: str = None,
+    post_LLM: bool = None,
+    ):
+    
+    if post_LLM is None:
+        raise ValueError("Please provide a value for the post_LLM parameter.")
+    
+    try:
+        df = pd.read_csv(f"CSV_files/{csv_file}", index_col=0)
+    except FileNotFoundError as e:
+        raise FileNotFoundError(
+            f"CSV file '{csv_file}' not found. Ensure the file is located in the 'CSV_files' directory."
+        ) from e
+    
+    def pie_chart(figure_file_name="best_code_answer_pie_chart"):
+        """Pie chart for comparing the selections for the 'Best Answer' column."""
+        best_answer_counts = df['Best Answer'].value_counts()
+        plt.figure(figsize=(8, 6))
+        best_answer_counts.plot(kind='pie', autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
+        plt.title("Prefered Answers based on the selection for the 'Best Answer' out of the answer types")
+        plt.ylabel('')
+        create_graph(
+            download_data=download_data,
+            figure_file_name=figure_file_name,
+            format=format,
+            post_LLM=post_LLM,
+        )
+        
+    
+    def verb_adjective_barplot(figure_file_name="verb_adjective_code_barplot"):
+        """Average verb and adjective counts for each answer type as a bar plot."""
+        answer_types = ['Stack Overflow', 'ChatGPT-4o', 'CoPilot']
+        avg_verb_counts = [
+            df['Stack Overflow Verb Count'].mean(),
+            df['ChatGPT-4o Verb Count'].mean(),
+            df['CoPilot Verb Count'].mean()
+        ]
+        avg_adjective_counts = [
+            df['Stack Overflow Adjective Count'].mean(),
+            df['ChatGPT-4o Adjective Count'].mean(),
+            df['CoPilot Adjective Count'].mean()
+        ]
+
+        x = range(len(answer_types))
+        plt.figure(figsize=(10, 6))
+        plt.bar(x, avg_verb_counts, width=0.4, label='Verb Count', align='center')
+        plt.bar(x, avg_adjective_counts, width=0.4, label='Adjective Count', align='edge')
+        plt.xticks(x, answer_types)
+        plt.title("Average Verb and Adjective Counts by Answer Type")
+        plt.xlabel("Answer Type")
+        plt.ylabel("Average Count")
+        plt.legend()
+        create_graph(
+            download_data=download_data,
+            figure_file_name=figure_file_name,
+            format=format,
+            post_LLM=post_LLM,
+        )
+        
+    def len_of_body_barplot(figure_file_name="len_of_code_body_barplot"):
+        """Average length of body (in characters) for each answer type as a bar plot."""
+        answer_types = ['Stack Overflow', 'ChatGPT-4o', 'CoPilot']
+        df['Stack Overflow Length'] = df['Stack Overflow'].str.len()
+        df['ChatGPT-4o Length'] = df['ChatGPT-4o'].str.len()
+        df['CoPilot Length'] = df['CoPilot'].str.len()
+
+        avg_lengths = [
+            df['Stack Overflow Length'].mean(),
+            df['ChatGPT-4o Length'].mean(),
+            df['CoPilot Length'].mean()
+        ]
+
+        plt.figure(figsize=(8, 6))
+        plt.bar(answer_types, avg_lengths, color=['blue', 'green', 'orange'])
+        plt.title("Average Length of Body by Answer Type")
+        plt.xlabel("Answer Type")
+        plt.ylabel("Average Length (characters)")
+        create_graph(
+            download_data=download_data,
+            figure_file_name=figure_file_name,
+            format=format,
+            post_LLM=post_LLM,
+        )
+        
+    pie_chart()
+    verb_adjective_barplot()
+    len_of_body_barplot()

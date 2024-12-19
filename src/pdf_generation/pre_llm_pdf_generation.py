@@ -336,7 +336,7 @@ def parse_code():
 
 
 def generate_pdf_report(data_dict):
-    doc = SimpleDocTemplate("pre_llm_report.pdf", pagesize=letter)
+    doc = SimpleDocTemplate("pre_llm_Q&A_report.pdf", pagesize=letter)
     styles = getSampleStyleSheet()
 
     highlighted_code_style = ParagraphStyle(

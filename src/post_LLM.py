@@ -22,6 +22,11 @@ def data_processing():
         csv_file="post-llm-monthly-data.csv",
         post_LLM=True,
     )
+    code_comparison(
+        download_data=True,
+        csv_file="post-llm-code.csv",
+        post_LLM=True,
+    )
 
 
 if __name__ == "__main__":

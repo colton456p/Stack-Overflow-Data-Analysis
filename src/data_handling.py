@@ -11,19 +11,19 @@ def save_graph(figure_file_name: str, format: str, post_LLM: bool):
     else:
         graph_type = "pre_LLM_graphs"
     try:
-        plt.savefig(f"src/{graph_type}/{configured_file}", format=format)
+        plt.savefig(f"src/graphs/{graph_type}/{configured_file}", format=format)
     except FileNotFoundError:
-        os.makedirs(f"src/{graph_type}", exist_ok=True)
-        plt.savefig(f"src/{graph_type}/{configured_file}", format=format)
+        os.makedirs(f"src/graphs/{graph_type}", exist_ok=True)
+        plt.savefig(f"src/graphs/{graph_type}/{configured_file}", format=format)
 
 
 def save_comparison_graph(figure_file_name, format):
     configured_file = figure_file_name + "." + format
     try:
-        plt.savefig(f"src/comparison_graphs/{configured_file}", format=format)
+        plt.savefig(f"src/graphs/comparison_graphs/{configured_file}", format=format)
     except FileNotFoundError:
-        os.makedirs(f"src/comparison_graphs", exist_ok=True)
-        plt.savefig(f"src/comparison_graphs/{configured_file}", format=format)
+        os.makedirs(f"src/graphs/comparison_graphs", exist_ok=True)
+        plt.savefig(f"src/graphs/comparison_graphs/{configured_file}", format=format)
 
 
 def reset_graph_settings():
