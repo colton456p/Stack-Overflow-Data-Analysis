@@ -62,6 +62,15 @@
     ```bash
     python3 -m src.run_all
     ```
+6. (optional) Run pfd generation.
+- Pre-LLM:
+    ```bash
+    python3 -m src.pdf_generation.pre_llm_pdf_generation
+    ```
+- Post-LLM:
+    ```bash
+    python3 -m src.pdf_generation.post_llm_pdf_generation
+    ```
 
 ### Linter 
 - To run project lint:
