@@ -1,4 +1,3 @@
 venv
-src/post_LLM_graphs/
-src/pre_LLM_graphs/
-src/comparison_graphs/
+pre_llm_report.pdf
+src/__pycache__/
