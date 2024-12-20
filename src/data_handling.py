@@ -5,11 +5,13 @@ import seaborn as sns
 
 
 def save_graph(figure_file_name: str, format: str, post_LLM: bool):
-    configured_file = figure_file_name + "." + format
+    configured_file = ""
     if post_LLM:
         graph_type = "post_LLM_graphs"
+        configured_file = figure_file_name + ".post-llm." + format
     else:
         graph_type = "pre_LLM_graphs"
+        configured_file = figure_file_name + ".pre-llm." + format
     try:
         plt.savefig(f"src/graphs/{graph_type}/{configured_file}", format=format)
     except FileNotFoundError:
@@ -18,7 +20,7 @@ def save_graph(figure_file_name: str, format: str, post_LLM: bool):
 
 
 def save_comparison_graph(figure_file_name, format):
-    configured_file = figure_file_name + "." + format
+    configured_file = figure_file_name + ".comparison." + format
     try:
         plt.savefig(f"src/graphs/comparison_graphs/{configured_file}", format=format)
     except FileNotFoundError:
