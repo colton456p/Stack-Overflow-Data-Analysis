@@ -878,15 +878,30 @@ def code_comparison(
 
     def pie_chart(figure_file_name="best_code_answer_pie_chart"):
         """Pie chart for comparing the selections for the 'Best Answer' column."""
-        best_answer_counts = df["Best Answer"].value_counts()
+
+        best_answer_counts = {}
+
+        for answers in df["Best Answer"]:
+            if pd.notna(answers):
+                for answer in answers.split(","):
+                    answer = answer.strip()
+                    if answer in best_answer_counts:
+                        best_answer_counts[answer] += 1
+                    else:
+                        best_answer_counts[answer] = 1
+
+        print(best_answer_counts)
+        best_answer_series = pd.Series(best_answer_counts)
+
         plt.figure(figsize=(8, 6))
-        best_answer_counts.plot(
+        best_answer_series.plot(
             kind="pie", autopct="%1.1f%%", startangle=90, colors=plt.cm.Paired.colors
         )
         plt.title(
             "Prefered Answers based on the selection for the 'Best Answer' out of the answer types"
         )
         plt.ylabel("")
+
         create_graph(
             download_data=download_data,
             figure_file_name=figure_file_name,
